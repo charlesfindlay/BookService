@@ -97,6 +97,11 @@ namespace BookService.Controllers
                 return BadRequest(ModelState);
             }
 
+            db.Books.Add(book);
+            await db.SaveChangesAsync();
+
+            db.Entry(book).Reference(x => x.Author).Load();
+
             var dto = new BookDTO()
             {
                 Id = book.Id,
