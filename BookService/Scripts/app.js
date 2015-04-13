@@ -78,6 +78,34 @@
 
     
 
+        
+    //Begin Add Author
+    self.newAuthor =
+        {
+        Name: ko.observable()
+        }
+
+    var authorsUri = '/api/authors/';
+
+    self.addAuthor = function (formElement) {
+        var author = {
+
+            Name: self.newAuthor.Name()
+
+        };
+
+        ajaxHelper(authorsUri, 'POST', author).done(function (item) {
+            self.authors.push(item);
+        });
+    }
+
+
+    // End Add Author
+
+
+
+
+
 
 
     // Fetch the initial data.
